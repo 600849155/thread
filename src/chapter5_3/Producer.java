@@ -1,4 +1,4 @@
-package Chapter5_3;
+package chapter5_3;
 
 import java.util.Random;
 import java.util.concurrent.BlockingQueue;

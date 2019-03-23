@@ -1,6 +1,5 @@
-package Chapter3;
+package chapter3;
 
-import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class TimeLock implements Runnable {

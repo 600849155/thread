@@ -1,4 +1,4 @@
-package Chapter5_3;
+package chapter5_3;
 
 public final class PCData {
     private final int intData;

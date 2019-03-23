@@ -38,9 +38,9 @@ public class demo3 {
 //    }
 //}
 
-//封装共享数据类
+/**封装共享数据类**/
 class RunnableCusToInc implements Runnable{
-    //封装共享数据
+    /**封装共享数据**/
     private ShareData shareData;
     public RunnableCusToInc(ShareData data) {
         this.shareData = data;
@@ -52,9 +52,9 @@ class RunnableCusToInc implements Runnable{
         }
     }
 }
-//封装共享数据类
+/**封装共享数据类**/
 class RunnableCusToDec implements Runnable{
-    //封装共享数据
+    /**封装共享数据**/
     private ShareData shareData;
     public RunnableCusToDec(ShareData data) {
         this.shareData = data;

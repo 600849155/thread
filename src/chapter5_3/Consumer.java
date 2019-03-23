@@ -1,4 +1,4 @@
-package Chapter5_3;
+package chapter5_3;
 
 import java.text.MessageFormat;
 import java.util.Random;

@@ -1,4 +1,4 @@
-package Chapter2;
+package chapter2;
 
 public class SimpleWaitAndNotify {
     final static Object object = new Object();//通過object對象來进行多线程通信
