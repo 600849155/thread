@@ -34,6 +34,7 @@ public class MyRecursiveAction extends RecursiveAction {
             System.out.println("Splitting workLoad:" + workLoad);
             List<MyRecursiveAction> subtasks = new ArrayList<>();
             subtasks.addAll(createSubtasks());
+            //fork()方法作用是拆分任务
             subtasks.forEach((key) -> key.fork());
         }
         if (workLoad <= workCount) {
@@ -58,7 +59,11 @@ public class MyRecursiveAction extends RecursiveAction {
         ForkJoinPool forkJoinPool = new ForkJoinPool(4);
         //创建一个没有返回值的任务
         MyRecursiveAction myRecursiveAction = new MyRecursiveAction(24);
-        //ForkJoinPool执行任务
+        /*
+         ForkJoinPool执行任务
+         这3种任务提交方法还是有所差别的，在submit中提交了一个任务之后，会异步开始执行任务同时返回这个任务，而
+         execute会异步执行这个任务但是没有任何返回。而invoke会异步开始执行任务，直接返回一个结果。
+         */
         forkJoinPool.invoke(myRecursiveAction);
     }
 }
