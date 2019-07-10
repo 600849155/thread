@@ -1,14 +1,16 @@
 package chapter3;
 
 import java.util.Random;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.concurrent.*;
+import java.util.stream.IntStream;
 
 
+/**
+ * @author Whohim
+ */
 public class CountDownLatchDemo implements Runnable {
-    static final CountDownLatch end = new CountDownLatch(10);
-    static final CountDownLatchDemo demo = new CountDownLatchDemo();
+    private static final CountDownLatch END = new CountDownLatch(10);
+    private static final CountDownLatchDemo DEMO = new CountDownLatchDemo();
 
     @Override
     public void run() {
@@ -16,19 +18,21 @@ public class CountDownLatchDemo implements Runnable {
         try {
             Thread.sleep(new Random().nextInt(3) * 1000);
             System.out.println("check complete");
-            end.countDown();//通知CountDownLatch一个线程已经完成了任务
         } catch (InterruptedException e) {
             e.printStackTrace();
+        } finally {
+            //通知CountDownLatch一个线程已经完成了任务
+            END.countDown();
         }
     }
 
-    public static void main(String args[]) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException {
         ExecutorService executorService = Executors.newFixedThreadPool(10);
-        for (int i = 0; i < 10; i++) {
-            executorService.submit(demo);
-        }
-        end.await();//要求主线程等待所有10个检查任务完成
-        System.out.println("10个任务检查完成，Fire!");//只有10个任务都完成，才发射火箭
+        IntStream.range(0, 10).mapToObj(i -> DEMO).forEach(executorService::submit);
+        //要求主线程等待所有10个检查任务完成
+        END.await();
+        //只有10个任务都完成，才发射火箭
+        System.out.println("10个任务检查完成，Fire!");
         executorService.shutdown();
     }
 }
