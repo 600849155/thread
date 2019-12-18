@@ -1,7 +1,7 @@
 package atomic;
 
 /**
- * Volatile关键字不具备synchronized关键字的原子性(同步）
+ * Volatile关键字不具备synchronized关键字的原子性(同步）、Atomic操作的底层实现是CAS机制
  */
 public class VolatileNoAtomic extends Thread {
     private static volatile int count;
