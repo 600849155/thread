@@ -1,4 +1,3 @@
-package Thread;
 
 public class VolatileDemo {
     static volatile int i = 0;
@@ -11,6 +10,7 @@ public class VolatileDemo {
             }
         }
     }
+
     /**
      * volatile保证变量的可见性,但是无法保证一些符合操作的原子性,该实例里即能得到此结果,启动10个线程对i进行累加操作,
      * 如果一切正常的话,结果应为100000,但是结果为94875或者其他小于100000,因此线程的并发中没有保证i的原子性.
